@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-warred: #dc2626;
+  --color-warred-glow: #ef4444;
+  --color-command-blue: #3b82f6;
+  --color-intel-green: #22c55e;
+  --color-fog-orange: #f97316;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #0f172a;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+/* Glowing red timeline line */
+.timeline-line {
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.6), 0 0 20px rgba(220, 38, 38, 0.3);
+}
+
+/* Pulse animation for live indicators */
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(220, 38, 38, 0.8); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px rgba(220, 38, 38, 1); }
+}
+
+.pulse-live {
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scan-line {
+  animation: scan-line 8s linear infinite;
+  opacity: 0.03;
+}
+
+/* Fog of war glow */
+@keyframes fog-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.fog-pulse {
+  animation: fog-pulse 1.5s ease-in-out infinite;
+}

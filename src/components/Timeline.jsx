@@ -1,4 +1,4 @@
-import { Clock, MapPin, ShieldCheck } from 'lucide-react';
+import { Clock, MapPin, ShieldCheck, ExternalLink, Rss } from 'lucide-react';
 import { categoryColors } from '../data/mockEvents';
 
 export default function Timeline({ events, onEventClick }) {
@@ -80,11 +80,24 @@ export default function Timeline({ events, onEventClick }) {
 
                 <div className="mt-2 flex items-center justify-between">
                   <span className="text-[8px] md:text-[9px] font-mono text-slate-600 truncate">
+                    {event.isLive && <Rss className="w-3 h-3 inline mr-1 text-emerald-500" />}
                     SRC: {event.source}
                   </span>
-                  <span className="hidden md:block text-[9px] font-mono text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-                    CLICK FOR NARRATIVE ANALYSIS →
-                  </span>
+                  {event.isLive && event.url ? (
+                    <a
+                      href={event.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[9px] font-mono text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 flex items-center gap-1"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      OPEN SOURCE <ExternalLink className="w-3 h-3" />
+                    </a>
+                  ) : (
+                    <span className="hidden md:block text-[9px] font-mono text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                      CLICK FOR NARRATIVE ANALYSIS →
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
